@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#170d18">
+  <title>Uma surpresa para Thassia ❤️</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #fff4f7;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(183, 55, 100, .25), transparent 35%),
+        radial-gradient(circle at 80% 80%, rgba(112, 32, 87, .3), transparent 38%),
+        #170d18;
+    }
+    .glow {
+      position: fixed;
+      width: 230px; height: 230px;
+      border-radius: 50%;
+      background: #d83c78;
+      filter: blur(100px);
+      opacity: .16;
+      pointer-events: none;
+    }
+    .card {
+      position: relative;
+      width: min(100%, 410px);
+      padding: 34px 25px 30px;
+      text-align: center;
+      border: 1px solid rgba(255, 190, 213, .2);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .07);
+      box-shadow: 0 20px 70px rgba(0,0,0,.35);
+      backdrop-filter: blur(12px);
+    }
+    .eyebrow {
+      color: #f4a8c5;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      margin-bottom: 20px;
+    }
+    .heart {
+      font-size: 46px;
+      display: block;
+      margin-bottom: 18px;
+      animation: pulse 1.7s infinite;
+    }
+    h1 {
+      font-size: clamp(27px, 8vw, 36px);
+      line-height: 1.15;
+      margin: 0 0 14px;
+      font-weight: 750;
+    }
+    h1 span { color: #ff8fb8; }
+    p {
+      color: #e9cbd7;
+      line-height: 1.65;
+      font-size: 15px;
+      margin: 0 auto 24px;
+    }
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 24px;
+      color: #321323;
+      background: linear-gradient(135deg, #ffb0cb, #f477a6);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(244, 119, 166, .25);
+      -webkit-tap-highlight-color: transparent;
+    }
+    button:active { transform: scale(.97); }
+    #reveal {
+      display: none;
+      margin-top: 25px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 190, 213, .2);
+      animation: appear .7s ease both;
+    }
+    #reveal p {
+      color: #fff0f5;
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+    .signature {
+      color: #f4a8c5;
+      font-size: 13px;
+      margin-top: 18px;
+    }
+    .tiny { color: #bd9eac; font-size: 11px; margin-top: 22px; }
+    .particle {
+      position: fixed;
+      bottom: -30px;
+      color: #ff8fb8;
+      opacity: .0;
+      pointer-events: none;
+      animation: floatUp 6s linear forwards;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      15% { opacity: .75; }
+      100% { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <main class="card">
+    <div class="eyebrow">Uma pequena surpresa</div>
+    <span class="heart">❤️</span>
+    <h1>Thassia,<br><span>e se nosso beijo</span><br>for assim… de surpresa?</h1>
+    <p>Tem certas vontades que a gente tenta disfarçar…<br>mas confesso que a vontade de te beijar não está colaborando. 🙈</p>
+    <button id="openBtn" type="button">Descobrir a surpresa 💋</button>
+
+    <section id="reveal" aria-live="polite">
+      <p>Imagina a gente pertinho, aquele olhar demorado… e quando perceber, já aconteceu. 😏</p>
+      <p><strong>Prometo que meu beijo não vai ser tão tímido quanto essa mensagem. ❤️</strong></p>
+      <div class="signature">E aí… será que rola?</div>
+    </section>
+    <div class="tiny">Feito especialmente para você ✨</div>
+  </main>
+
+  <script>
+    const button = document.getElementById('openBtn');
+    const reveal = document.getElementById('reveal');
+
+    button.addEventListener('click', () => {
+      reveal.style.display = 'block';
+      button.textContent = 'Surpresa revelada ❤️';
+      button.disabled = true;
+      for (let i = 0; i < 14; i++) {
+        setTimeout(createHeart, i * 130);
+      }
+    });
+
+    function createHeart() {
+      const heart = document.createElement('span');
+      heart.className = 'particle';
+      heart.textContent = Math.random() > .35 ? '♥' : '♡';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (14 + Math.random() * 20) + 'px';
+      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7500);
+    }
+  </script>
+</body>
+</html>
